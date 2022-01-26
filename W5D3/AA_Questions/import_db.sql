@@ -40,7 +40,7 @@ CREATE TABLE replies (
 
 DROP TABLE IF EXISTS question_likes;
 CREATE TABLE  question_likes (
-    id INTEGER PRIMARY KEY
+    id INTEGER PRIMARY KEY,
     question_id INTEGER NOT NULL,-- Ref to question id
     user_id INTEGER NOT NULL,-- Ref to user
     --count_likes INTEGER NOT NULL-- number of users who liked the question
@@ -54,7 +54,7 @@ VALUES
     (1, "john", "smith");
 
 INSERT INTO 
-    questions(id, title, body, associated_author)
+    questions(id, title, body, author_id)
 VALUES
     (1, "why?", "Do we ask questions?", 1);
 
