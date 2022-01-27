@@ -48,12 +48,24 @@ class User
         SQL
         data.map {|datum| User.new(datum)}
     end
+
+    def authored_question?(question_id)
+        data = UsersDBConnection.instance.execute(<<-SQL, self.id)
+        SELECT * FROM questions WHERE id = #{question_id} AND author_id = ?
+        SQL
+        data.length > 0
+    end
+
+    def authored_replies?(reply_id)
+        data = UsersDBConnection.instance.execute(<<-SQL)
+        SELECT *
+        FROM replies
+        WHERE question_writer = #{reply_id}
+        SQL
+        return data.length > 0
+    end
+
 end
-
-a = User.new('fname'=>'Joe', 'lname'=>'Biden')
-
-
-p User.find_by_id(2)
 
 class Question
     attr_accessor :id, :title, :body, :author_id
@@ -61,6 +73,17 @@ class Question
         data = UsersDBConnection.instance.execute(<<-SQL)
         SELECT * FROM questions WHERE id = #{num}
         SQL
+        data.map {|datum| Question.new(datum)}
+    end
+
+    def self.find_by_author_id(num)
+        UsersDBConnection.instance.execute(<<-SQL)
+        SELECT * FROM questions WHERE author_id = #{num}
+        SQL
+    end
+
+    def self.all
+        data = UsersDBConnection.instance.execute('SELECT * FROM questions')
         data.map {|datum| Question.new(datum)}
     end
 
@@ -84,9 +107,28 @@ class Question
     end
 
 
+
 end
-q1 = Question.new('title' =>"What?", 'body' => "Do the american people want? please tell me.", 'author_id' => 2)
-q1.create
+
+a = User.new('fname'=>'Joe', 'lname'=>'Biden')
+b = User.new('fname'=> 'B', 'lname'=> 'B')
+#b.create
+#q1 = Question.new('title'=>'Why?', 'body'=>'do', 'author_id'=>2)
+#q1.create
+# p Question.all
+# p User.all
+#p a.authored_question?(3)
+#p User.all
+p b.authored_question?(2)
+
+
+
+#p User.find_by_id(2)
+
+
+#q1 = Question.new('title' =>"What?", 'body' => "Do the american people want? please tell me.", 'author_id' => 2)
+#p Question.find_by_author_id(2)
+#q1.create
 
 
 class Question_Follows 
@@ -105,3 +147,32 @@ class Question_Follows
 
 end
 
+class Reply
+    attr_accessor :id, :subject_question, :parent_reply, :question_writer, :user_reply
+
+    def initialize(options)
+        @id = options['id']
+        @subject_question = options['subject_question']
+        @parent_reply = options['parent_reply']
+        @question_writer = options['question_writer']
+        @user_reply = options['user_reply']
+    end
+
+    def self.find_by_user_id(num)
+        UsersDBConnection.instance.execute(<<-SQL)
+            SELECT *
+            FROM replies
+            WHERE question_writer = #{num}
+        SQL
+    end
+
+    def self.find_by_question_id(num)
+        UsersDBConnection.instance.execute(<<-SQL)
+            SELECT *
+            FROM replies
+            WHERE subject_question = #{num}
+        SQL
+    end
+
+
+end
