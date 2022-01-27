@@ -51,10 +51,17 @@ CREATE TABLE  question_likes (
 INSERT INTO 
     users(id, fname, lname)
 VALUES 
-    (1, "john", "smith");
+    (1, "Joe", "Biden"),
+    (2, "Gordan", "Ramsay");
+
 
 INSERT INTO 
     questions(id, title, body, author_id)
 VALUES
-    (1, "why?", "Do we ask questions?", 1);
+    (1, "why?", "Do we ask questions?", 1),
+    (2, "What does america want?", "please tell me", 1),
+    (3, "What doesn't america want?", "you know what i'm saying", 2);
+
+
+
 
