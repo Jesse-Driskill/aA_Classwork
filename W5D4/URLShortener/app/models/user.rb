@@ -1,5 +1,5 @@
-class User < ActiveRecord::Migration[5.2]
-    # validates :name, uniqueness: true, presence: true
+class User < ApplicationRecord
+    validates :email, presence: true, uniqueness: true
 
 
 end
