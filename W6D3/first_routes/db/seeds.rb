@@ -24,3 +24,5 @@ ArtworkShare.create(artwork_id: 2, viewer_id: 2)
 Comment.create(body: 'Nice art, bro', artwork_id: 1, user_id: 1)
 Comment.create(body: 'Ugly art, bro', artwork_id: 1, user_id: 2)
 Comment.create(body: 'Sad art, bro', artwork_id: 2, user_id: 3)
+
+Like.create(user_id: 1, likeable_type: 'Artwork', likeable_id: 1)
