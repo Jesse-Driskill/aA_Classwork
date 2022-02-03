@@ -4,7 +4,7 @@ class ArtworkShares < ActiveRecord::Migration[5.2]
       t.integer :artwork_id, null: false
       t.integer :viewer_id, null: false
     end
-    add_index :artworks, [:artist_id, :title], unique: true
+    #add_index :artworks, [:artist_id, :title], unique: true
   end
     
 end

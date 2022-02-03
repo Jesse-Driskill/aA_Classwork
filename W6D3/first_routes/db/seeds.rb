@@ -16,5 +16,7 @@ Artwork.create(title: 'b', image_url: 'b@google.com', artist_id: 1)
 Artwork.create(title: 'c', image_url: 'c@google.com', artist_id: 2)
 
 ArtworkShare.create(artwork_id: 1, viewer_id: 1)
-ArtworkShare.create(artwork_id: 1, viewer_id: 1)
+ArtworkShare.create(artwork_id: 4, viewer_id: 7)
 ArtworkShare.create(artwork_id: 2, viewer_id: 3)
+ArtworkShare.create(artwork_id: 1000, viewer_id: 65)
+ArtworkShare.create(artwork_id: 2, viewer_id: 2)
