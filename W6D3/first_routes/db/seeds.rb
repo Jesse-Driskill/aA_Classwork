@@ -7,7 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-User.create(username: 'sdijfhwerui', email: 'JohnSmith@gmail.com')
-User.create(username: 'sdijfhweruiasdas', email: 'JohnSmith2@gmail.com')
-User.create(username: 'sdijfhweruieee', email: 'JohnSmith3@gmail.com')
+User.create(username: 'sdijfhwerui')
+User.create(username: 'sdijfhweruiasdas')
+User.create(username: 'sdijfhweruieee')
 
+Artwork.create(title: 'a', image_url: 'a@google.com', artist_id: 1)
+Artwork.create(title: 'b', image_url: 'b@google.com', artist_id: 1)
+Artwork.create(title: 'c', image_url: 'c@google.com', artist_id: 2)
+
+ArtworkShare.create(artwork_id: 1, viewer_id: 1)
+ArtworkShare.create(artwork_id: 1, viewer_id: 1)
+ArtworkShare.create(artwork_id: 2, viewer_id: 3)
