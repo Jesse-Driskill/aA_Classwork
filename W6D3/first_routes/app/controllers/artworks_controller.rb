@@ -33,10 +33,22 @@ class ArtworksController < ApplicationController
             artwork.update(artwork_params)
         end
     end
+   
+    def favorite
+        artwork = Artwork.find(params[:id])
+        if artwork
+            artwork.favorited_by_owner = true
+            render json: [artwork, params]
+        end
+    end
+
+    def unfavorite
+    end
+
 
     private
 
     def artwork_params
-        params.require(:artwork).permit(:image_url, :artist_id, :title)
+        params.require(:artwork).permit(:image_url, :artist_id, :title, :favorited_by_owner)
     end
 end

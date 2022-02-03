@@ -23,4 +23,6 @@ class Artwork < ApplicationRecord
     dependent: :destroy
 
     has_many :likes, as: :likeable
+
+    
 end

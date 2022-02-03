@@ -21,4 +21,17 @@ class User < ApplicationRecord
     class_name: :Comment,
     dependent: :destroy
 
+    def favorite_artworks
+        artworks.where(favorite: true)
+    end
+
+    def favorite_shared_artworks
+        artwork_shares.where(favorite: true)
+    end
+
+    # def favorite_own(title)
+    #     artworks.where(title: title).update_attribute(:favorite, true)
+    # end
+
+
 end

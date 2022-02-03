@@ -14,6 +14,7 @@ User.create(username: 'sdijfhweruieee')
 Artwork.create(title: 'a', image_url: 'a@google.com', artist_id: 1)
 Artwork.create(title: 'b', image_url: 'b@google.com', artist_id: 1)
 Artwork.create(title: 'c', image_url: 'c@google.com', artist_id: 2)
+Artwork.create(title: 'd', image_url: 'd@google.com', artist_id: 3, favorited_by_owner: true)
 
 ArtworkShare.create(artwork_id: 1, viewer_id: 1)
 ArtworkShare.create(artwork_id: 4, viewer_id: 7)
@@ -26,3 +27,4 @@ Comment.create(body: 'Ugly art, bro', artwork_id: 1, user_id: 2)
 Comment.create(body: 'Sad art, bro', artwork_id: 2, user_id: 3)
 
 Like.create(user_id: 1, likeable_type: 'Artwork', likeable_id: 1)
+
