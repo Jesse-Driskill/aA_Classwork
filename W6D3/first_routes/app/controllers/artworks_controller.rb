@@ -38,6 +38,7 @@ class ArtworksController < ApplicationController
         artwork = Artwork.find(params[:id])
         if artwork
             artwork.favorited_by_owner = true
+            artwork.save
             render json: [artwork, params]
         end
     end
