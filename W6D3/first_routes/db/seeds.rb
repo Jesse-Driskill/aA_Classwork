@@ -20,3 +20,7 @@ ArtworkShare.create(artwork_id: 4, viewer_id: 7)
 ArtworkShare.create(artwork_id: 2, viewer_id: 3)
 ArtworkShare.create(artwork_id: 1000, viewer_id: 65)
 ArtworkShare.create(artwork_id: 2, viewer_id: 2)
+
+Comment.create(body: 'Nice art, bro', artwork_id: 1, user_id: 1)
+Comment.create(body: 'Ugly art, bro', artwork_id: 1, user_id: 2)
+Comment.create(body: 'Sad art, bro', artwork_id: 2, user_id: 3)
