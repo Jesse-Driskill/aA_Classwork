@@ -28,3 +28,8 @@ Comment.create(body: 'Sad art, bro', artwork_id: 2, user_id: 3)
 
 Like.create(user_id: 1, likeable_type: 'Artwork', likeable_id: 1)
 
+
+ArtworkCollection.create(user_id: 1, artwork_id: 1, name: 'Collection1')
+ArtworkCollection.create(user_id: 1, artwork_id: 2, name: 'Collection1')
+ArtworkCollection.create(user_id: 1, artwork_id: 3, name: 'Collection1')
+

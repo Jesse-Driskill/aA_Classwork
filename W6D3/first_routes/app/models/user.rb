@@ -33,5 +33,9 @@ class User < ApplicationRecord
     #     artworks.where(title: title).update_attribute(:favorite, true)
     # end
 
+    has_many :artwork_collections,
+    class_name: 'ArtworkCollection',
+    foreign_key: :user_id,
+    primary_key: :id
 
 end

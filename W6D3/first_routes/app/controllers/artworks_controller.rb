@@ -33,17 +33,29 @@ class ArtworksController < ApplicationController
             artwork.update(artwork_params)
         end
     end
-   
+
     def favorite
         artwork = Artwork.find(params[:id])
         if artwork
             artwork.favorited_by_owner = true
             artwork.save
-            render json: [artwork, params]
+            render json: artwork
         end
     end
 
     def unfavorite
+        # debugger
+        artwork = Artwork.find(params[:id])
+        if artwork
+            artwork.favorited_by_owner = false
+            artwork.save
+            render json: artwork
+        end
+    end
+
+    def like
+        like = Like.new( user_id: params[:user_id], likeable_id: params[:id], likeable_type: 'Artwork')
+        render json: params
     end
 
 

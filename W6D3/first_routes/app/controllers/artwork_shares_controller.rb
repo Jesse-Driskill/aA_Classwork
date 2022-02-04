@@ -23,9 +23,21 @@ class ArtworkSharesController < ApplicationController
     end
 
     def favorite
+        artwork_share = ArtworkShare.find(params[:id])
+        if artwork_share
+            artwork_share.favorited_by_user = true
+            artwork_share.save
+            render json: [artwork_share]
+        end
     end
 
     def unfavorite
+        artwork_share = ArtworkShare.find(params[:id])
+        if artwork_share
+            artwork_share.favorited_by_user = false
+            artwork_share.save
+            render json: [artwork_share]
+        end
     end
 
 

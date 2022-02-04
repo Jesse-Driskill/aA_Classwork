@@ -27,6 +27,11 @@ class CommentsController < ApplicationController
         render json: comments
     end
 
+    def like
+        like = Like.new( user_id: params[:user_id], likeable_id: params[:id], likeable_type: 'Comment')
+        render json: params
+    end
+
     private
 
     def comment_params

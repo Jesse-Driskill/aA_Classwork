@@ -14,24 +14,24 @@ Rails.application.routes.draw do
   # delete 'users/:id', to: 'users#destroy'
   resources :artworks, only: [:show, :update, :create, :destroy] do
     member do
-      post ':favorite', to: 'artworks#favorite', as: 'favorite'
-      post ':unfavorite', to: 'artworks#unfavorite', as: 'unfavorite'
-      post ':like', to: 'artworks#like', as: 'like'
-      post ':unlike', to: 'artworks#unlike', as: 'unlike'
+      post :favorite, to: 'artworks#favorite', as: 'favorite'
+      post :unfavorite, to: 'artworks#unfavorite', as: 'unfavorite'
+      post :like, to: 'artworks#like', as: 'like'
+      post :unlike, to: 'artworks#unlike', as: 'unlike'
     end
   end
   
   resources :artwork_shares, only: [:create, :destroy] do
     member do
-      post ':favorite', to: 'artwork_shares#favorite', as: 'favorite'
-      post ':unfavorite', to: 'artwork_shares#unfavorite', as: 'unfavorite'
+      post :favorite, to: 'artwork_shares#favorite', as: 'favorite'
+      post :unfavorite, to: 'artwork_shares#unfavorite', as: 'unfavorite'
     end
   end
   
   resources :comments, only: [:create, :destroy, :index] do 
     member do
-      post ':like', to: 'comments#like', as: 'like'
-      post ':unlike', to: 'comments#unlike', as: 'unlike'
+      post :like, to: 'comments#like', as: 'like'
+      post :unlike, to: 'comments#unlike', as: 'unlike'
     end
   end
 
