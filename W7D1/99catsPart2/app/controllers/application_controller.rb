@@ -6,6 +6,15 @@ class ApplicationController < ActionController::Base
 
     # CRLLL
 
+    def verify_ownership
+        @cat = Cat.find(params[:id])
+        if @cat.user_id != current_user.id
+            require_logged_in 
+        # else
+            
+        end
+    end
+
     def current_user
         # if someone is logged in we will find them by their session token
         @current_user ||= User.find_by(session_token: session[:session_token])

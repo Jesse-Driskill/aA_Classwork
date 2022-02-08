@@ -6,6 +6,10 @@ class User < ApplicationRecord
     #before_validation :ensure_session_token
     after_initialize :ensure_session_token
     
+    has_many :cats,
+    foreign_key: :user_id,
+    class_name: :Cat
+    
     attr_reader :password
 
     def reset_session_token!
