@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
         redirect_to new_user_url unless current_user
     end
 
+    def require_logged_out
+        redirect_to cats_url if current_user
+    end
+
     def login_user!(user)
         # session is an object that can be accessed from browser and from rails
         session[:session_token] = user.reset_session_token!

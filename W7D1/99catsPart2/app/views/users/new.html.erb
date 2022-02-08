@@ -1,0 +1,22 @@
+
+<!-- action: url or rails route to which we want to send our form data-->
+<!-- method: http method or verb that we want to use and only accepts GET or POST -->
+
+<!-- for: used in the label tag and must be the same as the input tag's id attribute -->
+<!-- name: how the data is named when passed through and will point to value returned within params -->
+
+<form action="<%=users_url %>" method="POST">
+
+  <label for="user_name">Username</label>
+  <input type="text" id="user_name" name="user[user_name]" value="<%= @user.user_name %>">
+
+  <br>
+
+  <label>Password:
+  <input type="password" name="user[password]" value="">
+  </label>
+
+  <input type="submit" value="Create User">
+
+
+</form>
