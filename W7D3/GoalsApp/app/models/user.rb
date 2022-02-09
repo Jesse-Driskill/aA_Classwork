@@ -18,7 +18,8 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
 
   def self.find_by_credentials(username, password)
-    user = user.find_by(username: username)
+    #debugger
+    user = User.find_by(username: username)
     return user if user && BCrypt::Password.new(user.password_digest).is_password?(password)
     return nil
   end

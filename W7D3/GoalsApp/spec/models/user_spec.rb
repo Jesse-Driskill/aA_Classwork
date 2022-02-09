@@ -31,6 +31,17 @@ RSpec.describe User, type: :model do
   end
 
   describe 'class_scoping_methods' do
+    describe '::find_by_credentials' do
+      before(:each) { User.create!(username: 'JohnSmith', password: 'password') }
+      it 'should return user object given valid parameters' do
+        expect(User.find_by_credentials('JohnSmith', 'password')).to eq(User.last)
+      end
 
+      it 'should return nil if given invalid parameters' do
+        expect(User.find_by_credentials('JohnSmith1', 'password2')).to eq(nil)
+      end
+    end
   end
+
+  
 end
