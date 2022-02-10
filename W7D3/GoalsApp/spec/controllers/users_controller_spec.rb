@@ -29,7 +29,7 @@ RSpec.describe UsersController, type: :controller do
         it 'renders the selected users page' do
           get :show, params: {id: (User.last.id+1) }
 
-          expect(response).to redirect_to(:index)
+          expect(response).to redirect_to(users_url)
           expect(response).to have_http_status(302)
         end
       end
@@ -64,7 +64,7 @@ RSpec.describe UsersController, type: :controller do
 
     describe 'Patch #update' do
       it "redirects to the newly updated user's page" do
-        patch :update, params: { user: { username: 'JohnSmith3', password: 'password' }}
+        patch :update, params: { id: User.last.id, user: { username: 'JohnSmith3', password: 'password' }}
         
         expect(response).to redirect_to(user_url(User.find_by(username: "JohnSmith3")))
         expect(response).to have_http_status(302)
@@ -74,7 +74,7 @@ RSpec.describe UsersController, type: :controller do
     describe 'Delete #destroy' do
       it "redirects to the user index page" do
         # User.create!(username: 'JohnSmith3', password: 'password')
-        delete :destroy, params: { id: User.find_by(username: "JohnSmith3") }
+        delete :destroy, params: { id: User.find_by(username: "JohnSmith3").id }
         
         expect(response).to redirect_to(users_url)
         expect(response).to have_http_status(302)
