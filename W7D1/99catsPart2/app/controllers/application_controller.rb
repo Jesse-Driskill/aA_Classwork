@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
-    skip_before_action :verify_authenticity_token # this is too avoid csrf verification - will cover tomorrow
+    skip_before_action :verify_authenticity_token # this is to avoid csrf verification - will cover tomorrow
     
     helper_method :current_user, :logged_in? # need to do this to use these methods in views!
 
