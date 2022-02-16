@@ -9,7 +9,20 @@ if (typeof window === 'undefined'){
  * and two white pieces at [3, 3] and [4, 4]
  */
 function _makeGrid () {
-  
+  let array = new Array([],[],[],[],[],[],[],[]);
+
+  for (let i = 0; i < array.length; i++) {
+    for (let k = 0; k < array.length; k++) {
+      array[i][k] = undefined;
+    }
+  }
+
+  array[3][4] = new Piece("black");
+  array[4][3] = new Piece("black");
+  array[3][3] = new Piece("white");
+  array[4][4] = new Piece("white");
+
+  return array;
 }
 
 /**
@@ -29,6 +42,12 @@ Board.DIRS = [
  * Checks if a given position is on the Board.
  */
 Board.prototype.isValidPos = function (pos) {
+  if ((pos[0] < 0) || (pos[1] < 0)) {
+    return false;
+  } else if ((pos[0] > 7) || (pos[1] > 7)) {
+    return false;
+  }
+  return true;
 };
 
 /**
@@ -36,6 +55,11 @@ Board.prototype.isValidPos = function (pos) {
  * throwing an Error if the position is invalid.
  */
 Board.prototype.getPiece = function (pos) {
+  if (this.isValidPos(pos)) {
+    return this.grid[pos[0]][pos[1]];
+  } else {
+    throw new Error('Not valid pos!');
+  }
 };
 
 /**
@@ -43,12 +67,17 @@ Board.prototype.getPiece = function (pos) {
  * matches a given color.
  */
 Board.prototype.isMine = function (pos, color) {
+  if (this.getPiece(pos) === undefined) {
+    return false;
+  }
+  return this.getPiece(pos).color === color;
 };
 
 /**
  * Checks if a given position has a piece on it.
  */
 Board.prototype.isOccupied = function (pos) {
+  return this.getPiece(pos) !== undefined;
 };
 
 /**
@@ -64,8 +93,32 @@ Board.prototype.isOccupied = function (pos) {
  *
  * Returns empty array if no pieces of the opposite color are found.
  */
+
+//  Board.DIRS = [
+//   [ 0,  1], [ 1,  1], [ 1,  0],
+//   [ 1, -1], [ 0, -1], [-1, -1],
+//   [-1,  0], [-1,  1]
+// ];
+
 Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
+  pos[0] += dir[0];
+  pos[1] += dir[1];
+  
+  if (!this.isValidPos(pos) || !this.isOccupied(pos)) {
+    return [];
+  } else if (this.getPiece(pos).color === color) {
+    return piecesToFlip;
+  }
+  
+  piecesToFlip.push(pos);
+  console.log(piecesToFlip);
+  return piecesToFlip.concat(this._positionsToFlip(pos, color, dir, piecesToFlip));
 };
+
+// With each recursive call, we're going to change position by dir input
+// We'll call pieceflipping function on each piece we encounter as long as it is the opposite color
+// When we hit one of our own pieces, we return all the positions we found
+// When we hit an empty piece of the edge of the board, return empty array
 
 /**
  * Checks that a position is not already occupied and that the color
