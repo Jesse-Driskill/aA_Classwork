@@ -94,26 +94,50 @@ Board.prototype.isOccupied = function (pos) {
  * Returns empty array if no pieces of the opposite color are found.
  */
 
-//  Board.DIRS = [
+// Board.DIRS = [
 //   [ 0,  1], [ 1,  1], [ 1,  0],
 //   [ 1, -1], [ 0, -1], [-1, -1],
 //   [-1,  0], [-1,  1]
 // ];
 
+// One of the conditionals will use pieacesToFlip.length
+
 Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
-  pos[0] += dir[0];
-  pos[1] += dir[1];
+  let x = pos[0] + dir[0];
+  let y = pos[1] + dir[1];
+  let newPos = [x, y];
   
-  if (!this.isValidPos(pos) || !this.isOccupied(pos)) {
+  if (piecesToFlip === undefined) {
+    piecesToFlip = [];
+  }
+
+  if (!this.isValidPos(newPos) || !this.isOccupied(newPos)) {
     return [];
-  } else if (this.getPiece(pos).color === color) {
+
+  } else if (this.getPiece(newPos).color !== color) {
+    piecesToFlip.push(newPos);
+  }
+  else if (this.getPiece(newPos).color === color) {
     return piecesToFlip;
   }
   
-  piecesToFlip.push(pos);
-  console.log(piecesToFlip);
-  return piecesToFlip.concat(this._positionsToFlip(pos, color, dir, piecesToFlip));
+  
+  // console.log(piecesToFlip);
+  return this._positionsToFlip(newPos, color, dir, piecesToFlip);
 };
+
+// let arrrrrrrr = [
+//       [new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white")], 
+//       [new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white")], 
+//       [new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white")], 
+//       [new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white")], 
+//       [new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white")], 
+//       [new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white")], 
+//       [new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white")], 
+//       [new Piece("black"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("white"), new Piece("black")], 
+
+
+// ];
 
 // With each recursive call, we're going to change position by dir input
 // We'll call pieceflipping function on each piece we encounter as long as it is the opposite color
@@ -125,7 +149,19 @@ Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
  * taking the position will result in some pieces of the opposite
  * color being flipped.
  */
+
+// pos, color, dir, piecesToFlip
 Board.prototype.validMove = function (pos, color) {
+  if (!this.isValidPos(pos) || this.isOccupied(pos)) {
+    return false;
+  }
+
+  for (let i = 0; i < Board.DIRS.length; i++) {
+    if (this._positionsToFlip(pos, color, Board.DIRS[i]).length > 0) {
+      return true;
+    }
+  }
+  return false;
 };
 
 /**
