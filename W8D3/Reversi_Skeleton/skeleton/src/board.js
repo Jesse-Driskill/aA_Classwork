@@ -217,6 +217,7 @@ Board.prototype.validMoves = function (color) {
  * Checks if there are any valid moves for the given color.
  */
 Board.prototype.hasMove = function (color) {
+  return this.validMoves(color).length > 0;
 };
 
 
@@ -226,6 +227,7 @@ Board.prototype.hasMove = function (color) {
  * the black player are out of moves.
  */
 Board.prototype.isOver = function () {
+  return (this.validMoves('white').length === 0) && (this.validMoves('black').length === 0);
 };
 
 
@@ -235,8 +237,44 @@ Board.prototype.isOver = function () {
  * Prints a string representation of the Board to the console.
  */
 Board.prototype.print = function () {
+  console.log("    0 1 2 3 4 5 6 7 ");
+  console.log("  ------------------");
+  for (let i = 0; i < 8; i++) {
+    // console.log(`| ${this.grid[i].join(" , ")} |`)
+    let rowStr = ""
+    for (let j = 0; j < 8; j++) {
+      if (this.grid[i][j] === undefined ) {
+        rowStr += '_ ';
+      } else {
+        rowStr += this.grid[i][j].toString() + " ";
+      }
+    }
+    console.log(`${i} | ${rowStr}`);
+  }
+  console.log("  ------------------");
 };
 
+// def display_board
+//         i = 0
+//         puts "   0  1  2  3  4  5  6  7"
+//         @grid.each do |sub_arr|
+//             #i += 1
+//             # puts i.to_s + "  " + sub_arr.join("  ")
+//             symbols = []
+//             k = 0
+//             while k < sub_arr.length
+//                 if sub_arr[k].is_a?(Piece)
+//                     symbols << sub_arr[k].symbol
+//                 else
+//                     symbols << sub_arr[k]
+//                 end
+//                 k += 1
+//             end
+
+//             puts i.to_s + "  " + symbols.join("  ")
+//             i += 1
+//         end
+//     end
 
 // DON'T TOUCH THIS CODE
 if (typeof window === 'undefined'){

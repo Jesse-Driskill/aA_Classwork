@@ -11,15 +11,15 @@ function Piece (color) {
  */
 Piece.prototype.oppColor = function () {
     if (this.color === "white") {
-        this.oppColor = "black";
+        return "black";
         // return "black";
     }
     else {
-        this.oppColor = "white";
+        return "white";
         // return "white";
     }
 
-    return this.oppColor;
+    // return this.oppColor;
 };
 
 /**
