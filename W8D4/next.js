@@ -28,7 +28,13 @@ function askIfGreaterThan(el1, el2, callback) {
 
 // Once you're done testing askIfGreaterThan with dummy arguments, write this.
 function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop) {
-    madeAnySwaps = false;
+    // if (i === 0) {
+    //     madeAnySwaps = false;
+    // }
+    if (i === arr.length - 1) {
+        outerBubbleSortLoop(madeAnySwaps);
+        return;
+    }
   // Do an "async loop":
   // 1. If (i == arr.length - 1), call outerBubbleSortLoop, letting it
   //    know whether any swap was made.
@@ -36,22 +42,16 @@ function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop) {
   //    1]`. Swap if necessary. Call `innerBubbleSortLoop` again to
   //    continue the inner loop. You'll want to increment i for the
   //    next call, and possibly switch madeAnySwaps if you did swap.
-    if (i === arr.length - 1) {
-        outerBubbleSortLoop(madeAnySwaps);
-    }
-    else {
-        const greaterThan = askIfGreaterThan(arr[i], arr[i + 1], function(bool) {
-            console.log(bool);
-            reader.close();
-        });
-
-        if (greaterThan) {
+    askIfGreaterThan(arr[i], arr[i + 1], function(bool) {
+        if (bool) {
             arr[i], arr[i + 1] = arr[i + 1], arr[i];
             madeAnySwaps = true;
         }
+    });
+
+        
         innerBubbleSortLoop(arr, i + 1, madeAnySwaps, outerBubbleSortLoop);
     }
-}
 
 // Once you're done testing innerBubbleSortLoop, write outerBubbleSortLoop.
 // Once you're done testing outerBubbleSortLoop, write absurdBubbleSort.
@@ -60,9 +60,16 @@ function absurdBubbleSort(arr, sortCompletionCallback) {
     function outerBubbleSortLoop(madeAnySwaps) {
     // Begin an inner loop if you made any swaps. Otherwise, call
     // `sortCompletionCallback`.
+    if (madeAnySwaps) {
+        innerBubbleSortLoop(arr, 0, false, outerBubbleSortLoop);
+    } 
+    else {
+        sortCompletionCallback(arr);
+    }
     }
 
   // Kick the first outer loop off, starting `madeAnySwaps` as true.
+    outerBubbleSortLoop(true);
 }
 
 absurdBubbleSort([3, 2, 1], function(arr) {
