@@ -9,6 +9,7 @@ class Board {
 
     setPos(pos, mark) {
         this.grid[pos[0]][pos[1]] = mark;
+        console.log(`dafda`);
     }
 
     openPositions() {
@@ -57,7 +58,7 @@ class Board {
         //         break;
         //     }
         // }
-        if ((this.grid[0][0] === this.grid[1][1] && this.grid[1][1] === this.grid[2][2]) ||(this.grid[0][2] === this.grid[1][1] && this.grid[1][1] === this.grid[2][0])) {
+        if ((this.grid[1][1] !== "_" && this.grid[0][0] === this.grid[1][1] && this.grid[1][1] === this.grid[2][2]) ||(this.grid[0][2] === this.grid[1][1] && this.grid[1][1] === this.grid[2][0])) {
             this.winningMark = this.grid[0][0];
             return true;
         }
