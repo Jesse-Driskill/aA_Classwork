@@ -32,23 +32,37 @@ class View {
     let cells = [pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9];
 
     for (let i = 0; i < cells.length; i++) {
-      cells[i].append("Sup");
+      // cells[i].append("X");
+      
       containerUl.appendChild(cells[i]);
       // containerUl.append(cells[i]);
       console.log(cells[i]);
     }
+
+    pos1.append('X');
+    pos7.append('O');
   }
   
-  bindEvents() {}
+  bindEvents() {
+
+    
+  }
 
   handleClick(e) {
-    addEventListener('click', )
+    const boxes = document.querySelector("li");
+    boxes.addEventListener('click', e);
+
   }
 
   // groceries.addEventListener('click', markAsDone);
 
-  makeMove(square) {}
+  makeMove(square) {
 
+  }
+
+  
+
+  
 }
 
 
