@@ -6,11 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.View = View;
   window.Game = Game;
-
   let game = new Game();
   let ele = document.getElementById('ttt');
   let view = new View(game, ele);
-  view.setupBoard();
   
 });
 

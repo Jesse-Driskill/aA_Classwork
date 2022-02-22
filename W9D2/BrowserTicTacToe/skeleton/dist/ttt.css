@@ -1,0 +1,19 @@
+
+ul {
+  list-style-type: none;
+  display: flex;
+  width: 500px;
+  flex-wrap: wrap;
+  font-size: 60px;
+}
+
+ul > li {
+  border: solid 1px black;
+  padding: 20px;
+  background-color: rgb(172, 189, 189);
+}
+
+li:hover {
+  background-color: rgb(252, 204, 142);
+  cursor: pointer;
+}
