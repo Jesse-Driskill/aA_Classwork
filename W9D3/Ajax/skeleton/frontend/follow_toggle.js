@@ -4,4 +4,5 @@ function FollowToggle(el) {
     this.wrapper = $(el);
 }
 
+
 module.exports = FollowToggle;
