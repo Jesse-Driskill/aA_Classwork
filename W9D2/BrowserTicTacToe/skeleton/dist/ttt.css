@@ -18,7 +18,15 @@ ul > li {
   justify-content: center;
 }
 
-li:hover {
+li:hover:not(.o, .x){
   background-color: rgb(252, 204, 142);
   cursor: pointer;
+}
+
+.o {
+  background-color: rgb(51, 253, 101);
+}
+
+.x {
+  background-color: rgb(231, 57, 57);
 }
