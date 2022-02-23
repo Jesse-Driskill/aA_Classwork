@@ -30,3 +30,7 @@ li:hover:not(.o, .x){
 .x {
   background-color: rgb(231, 57, 57);
 }
+
+#foo {  
+  pointer-events: none;  
+}
