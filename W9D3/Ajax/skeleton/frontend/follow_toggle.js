@@ -8,7 +8,8 @@ function FollowToggle(el, i) {
     this.boundClick = this.handleClick.bind(this);
     // let that = this;
     this.nonWrapped.addEventListener("click", this.boundClick);
-
+    console.log(this.followState === false);
+    console.log(this.followState);
 }
 
 FollowToggle.prototype.render = function() {
@@ -53,14 +54,14 @@ FollowToggle.prototype.handleClick = function(e) {
         this.render();
     });
 //    function success() {
-        if (this.followState === true) {
-            this.followState = false;
-        }
-        else {
-            this.followState = true;
-        }
+        // if (this.followState === true) {
+        //     this.followState = false;
+        // }
+        // else {
+        //     this.followState = true;
+        // }
 
-        this.render();
+        // this.render();
         // console.log('erfkjhfeiuwrhferj');
 //     }
     // console.log(this);
