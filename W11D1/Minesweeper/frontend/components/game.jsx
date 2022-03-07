@@ -9,10 +9,8 @@ class Game extends React.Component {
         super(props);
         
         this.state = {
-            board: new Minesweeper.Board(12, 3)
+            board: new Minesweeper.Board(8, 3)
         }
-        // let variable = new Board(2, 2);
-        console.log("Constructor");
     };
 
     updateGame() {

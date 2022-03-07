@@ -4,26 +4,55 @@ import React from 'react';
 export default class Board extends React.Component{
     constructor(props) {
         super(props);
-        console.log(this.props.board);
+        // console.log(this.props.board);
+    }
+    getRows() {
+        return this.props.board.grid.map ( (row, index) => {
+            return(
+             <ul
+                key = {index}
+             >
+                 {this.getTiles(row, index)}
+             </ul>    
+            )
+
+        })
+        
+                
     }
 
+    getTiles(row, idx) {
+       return row.map( (tile, index) => {
+            return (
+                <li className='tile'
+                    key = {index}
+                    tile={row[index]}
+                    onClick={this.props.updateGame}
+                >{this.getText(idx, index)}</li>
+            )
+        })
+    }
+
+    getText(idx1, idx2) {
+        let currentTile =this.props.board.grid[idx1][idx2] 
+        if(!currentTile.explored) {
+            if(currentTile.bombed)  return '💣';
+            return currentTile.adjacentBombCount()
+        }
+        if(currentTile.flagged) return '🚩'
+        return '';
+    }
+
+
+
+
     render() {
-        // return this.props.board.map((row, rowIdx) => {
-        //     (<ul>{}</ul>)
-        //     // rows.map((tile, tileIdx) => {
+        let rows = this.getRows();
+        console.log(rows)
 
-        //     // });
-        // }); 
-
-        // return (
-        //     <ul>{this.props.board.map((row, rowIdx) => {
-        //         row.map((tile, tileIdx) => {
-
-        //         })
-        //     })}</ul>
-        // )
-
-        return (<div></div>)
+        return (<div>
+                    {rows}
+                </div>)
 
     }
 }
