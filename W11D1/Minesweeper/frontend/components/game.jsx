@@ -1,6 +1,7 @@
 import React from 'react';
-import Board2 from './board.jsx';
-import { Tile, Board } from '../../src/minesweeper/minesweeper';
+import Board from './board.jsx';
+import * as Minesweeper from '../../src/minesweeper/minesweeper';
+
 
 
 class Game extends React.Component {
@@ -8,9 +9,10 @@ class Game extends React.Component {
         super(props);
         
         this.state = {
-            board: new Board(2, 30),
+            board: new Minesweeper.Board(12, 3)
         }
-        
+        // let variable = new Board(2, 2);
+        console.log("Constructor");
     };
 
     updateGame() {
@@ -18,13 +20,16 @@ class Game extends React.Component {
     };
 
     render() {
-        console.log("Sup")
+        // console.log("Sup")
+
         return (
-            <Board2
+            <Board
                 updateGame = {() => this.updateGame()}
                 board = {this.state.board}
             />
         )
+        // return (<h1>Hello</h1>)
+        // return (<h1>Hello!!!!!!!!!!!!!!!!!!!!!!!!!</h1>)
     };
 }
 

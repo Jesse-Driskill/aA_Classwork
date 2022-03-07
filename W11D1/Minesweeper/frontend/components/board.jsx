@@ -1,3 +1,4 @@
+import { resolveShowConfigPath } from '@babel/core/lib/config/files';
 import React from 'react';
 
 export default class Board extends React.Component{
@@ -7,25 +8,23 @@ export default class Board extends React.Component{
     }
 
     render() {
-        const rows = this.props.board.map((row, rowIdx) => {
-            return (<ul></ul>)
-            rows.map((tile, tileIdx) => {
+        // return this.props.board.map((row, rowIdx) => {
+        //     (<ul>{}</ul>)
+        //     // rows.map((tile, tileIdx) => {
 
-            });
-        }); 
-        // return(
-        //     <ul>
-        //         <ul>
-                    
-        //         </ul>
+        //     // });
+        // }); 
 
+        // return (
+        //     <ul>{this.props.board.map((row, rowIdx) => {
+        //         row.map((tile, tileIdx) => {
 
-
-
-
-        //         <ul></ul>
-        //     </ul>
+        //         })
+        //     })}</ul>
         // )
+
+        return (<div></div>)
+
     }
 }
 
