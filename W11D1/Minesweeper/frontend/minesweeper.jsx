@@ -11,7 +11,7 @@ import Board from './components/board.jsx';
 
 class Root extends React.Component {
     render() {
-        return(<div><Game/></div>) 
+        return(<Game/>) 
     }
 }
 

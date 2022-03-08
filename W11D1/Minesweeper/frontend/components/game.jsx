@@ -13,8 +13,8 @@ class Game extends React.Component {
         }
     };
 
-    updateGame() {
-
+    updateGame(tile, flagged) {
+        console.log(tile, flagged);
     };
 
     render() {

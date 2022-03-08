@@ -1,4 +1,5 @@
 import { resolveShowConfigPath } from '@babel/core/lib/config/files';
+import Tile from './tile';
 import React from 'react';
 
 export default class Board extends React.Component{
@@ -9,11 +10,11 @@ export default class Board extends React.Component{
     getRows() {
         return this.props.board.grid.map ( (row, index) => {
             return(
-             <ul
-                key = {index}
-             >
-                 {this.getTiles(row, index)}
-             </ul>    
+                <ul
+                    key = {index}
+                >
+                    {this.getTiles(row, index)}
+                </ul>    
             )
 
         })
@@ -22,26 +23,27 @@ export default class Board extends React.Component{
     }
 
     getTiles(row, idx) {
-       return row.map( (tile, index) => {
+        
+        return row.map( (tile, index) => {
+            let currentTile = this.props.board.grid[idx][index]; 
+            
+            console.log("Tyhis is from bvoard", this.props.updateGame)
+            
             return (
-                <li className='tile'
+                <Tile
+                    // board = {this.props.board}
                     key = {index}
-                    tile={row[index]}
-                    onClick={this.props.updateGame}
-                >{this.getText(idx, index)}</li>
+                    index = {index}
+                    tile = {currentTile}
+                    updateGame = {(tile, flagged) => this.props.updateGame(tile, flagged)}
+
+                />
+
             )
         })
     }
 
-    getText(idx1, idx2) {
-        let currentTile =this.props.board.grid[idx1][idx2] 
-        if(!currentTile.explored) {
-            if(currentTile.bombed)  return '💣';
-            return currentTile.adjacentBombCount()
-        }
-        if(currentTile.flagged) return '🚩'
-        return '';
-    }
+
 
 
 
@@ -50,7 +52,7 @@ export default class Board extends React.Component{
         let rows = this.getRows();
         console.log(rows)
 
-        return (<div>
+        return (<div className="board-container">
                     {rows}
                 </div>)
 
