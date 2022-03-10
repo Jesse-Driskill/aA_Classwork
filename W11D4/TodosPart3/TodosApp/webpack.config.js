@@ -4,7 +4,7 @@ var path = require('path'); //allows config file location to be dynamic
 module.exports = {
   entry: './frontend/todo_redux.jsx',  //this is where webpack starts looking
   output: { //where webpakc puts the output files. use the path and filename
-    path: path.resolve(__dirname),
+    path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
 		filename: './bundle.js'
   },
   module: {
