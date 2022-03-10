@@ -1,7 +1,17 @@
-
-
 const allTodos = (state) => {
     return Object.values(state.todos)
 }
 
-export default allTodos;
+const stepsByTodoId = (state, todoId) => {
+    let arr = [];
+
+    state.steps.forEach(step => {
+        if (step.todo_id === todoId){
+            arr.push(step)
+        }
+    })
+
+    return arr;
+}
+
+export {allTodos, stepsByTodoId};
