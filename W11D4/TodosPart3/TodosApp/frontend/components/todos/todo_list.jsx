@@ -7,8 +7,13 @@ class TodoList extends React.Component{
         super(props);
     }
 
+    componentDidMount() {
+        console.log(this.props.fetchTodos())
+        this.props.fetchTodos();
+    }
+
     render() {
-        let {todos, receiveTodo, removeTodo} = this.props;
+        let {todos, receiveTodo, removeTodo, createTodo} = this.props;
 
         // let todos = this.props.todos;
         // let receiveTodo = this.props.receiveTodo;
@@ -23,7 +28,7 @@ class TodoList extends React.Component{
                             removeTodo={removeTodo}
                         /> )}
                 </ul>
-                <TodoForm receiveTodo={receiveTodo}/>
+                <TodoForm createTodo={createTodo}/>
             </div>
         )
     }
